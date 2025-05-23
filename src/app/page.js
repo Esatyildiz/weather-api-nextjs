@@ -3,13 +3,11 @@ import SearchBar from "@/components/SearchBar";
 import WeatherCard from "@/components/WeatherCard";
 import WeatherInfo from "@/components/WeatherInfo";
 import WeatherForecast from "@/components/WeatherForecast";
-import useSWR from "swr";
-import { fetcher } from "@/services/fetcher";
+import { useSWRConfig } from "swr";
 
 export default function Home() {
-  const { data, error, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_URL}/data`,
-    fetcher
+  const { data, error, isLoading } = useSWRConfig(
+    `${process.env.NEXT_PUBLIC_API_URL}/data/3.0/onecall?lat=33.44&lon=-94.04&appid=${process.env.NEXT_PUBLIC_API_KEY}`
   );
   console.log("data", data);
   if (isLoading) return <div>Yükleniyor...</div>;
